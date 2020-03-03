@@ -6,6 +6,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 function TabPanel(props: { [x: string]: any; children: any; value: any; index: any; }) {
   const { children, value, index, ...other } = props;
@@ -42,7 +44,14 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
+
+
 
 export default function SimpleTabs() {
   const classes = useStyles();
@@ -54,14 +63,29 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+       <Grid container spacing={3}>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            Header Left
+          </Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>Header Right</Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+          <AppBar position="static">
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Item One" {...a11yProps(0)} />
           <Tab label="Item Two" {...a11yProps(1)} />
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+          <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -70,6 +94,17 @@ export default function SimpleTabs() {
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
+          </Paper>
+        </Grid>     
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>Bottom Left</Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>Bottom Right</Paper>
+        </Grid>
+      </Grid>
+     
+      
     </div>
   );
 }
