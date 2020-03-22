@@ -9,12 +9,9 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/react": "latest",
     "@types/react-cookies": "^0.1.0",
-    "@types/react-dom": "latest",
     "json-server": "^0.16.1",
-    "now": "^17.0.4",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest",
     "react-scripts": "latest",
     "typescript": "latest"
   },

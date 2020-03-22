@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, {render} from 'react-dom';
+import {render} from 'react-dom';
 import cookie from "react-cookies";
 
 import {Provider} from "react-redux";
@@ -44,8 +44,9 @@ if (root instanceof HTMLDivElement) {
     );
 
     render(
-
+        <Provider store={store}>
             <App />
+        </Provider>
      ,
         root
     );
