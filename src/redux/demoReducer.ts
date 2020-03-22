@@ -1,0 +1,19 @@
+const STORE_DATA = "Store_Data";
+const GET_DATA = "Get_Data";
+
+export interface storeData {
+    data: string;
+}
+
+export const demoReducer = (state: storeData = {data: 'NOT_SET'}, action: any) => {
+    switch(action.type){
+        case STORE_DATA:
+            console.log("STORE: " + action.payload);
+            return "true";
+        case GET_DATA:
+            console.log("GET: " + action.payload);
+            return action.payload;
+        default:
+            return state;
+    }
+};

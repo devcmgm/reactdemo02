@@ -3,19 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "@types/react": "latest",
+    "@types/react-cookies": "^0.1.0",
+    "@types/react-dom": "latest",
     "json-server": "^0.16.1",
     "now": "^17.0.4",
-    "@material-ui/core": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
+    "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "typescript": "latest",
-    "prop-types": "latest"
+    "typescript": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
