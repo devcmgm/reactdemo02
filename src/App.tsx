@@ -14,7 +14,7 @@ function TabPanel(props: { [x: string]: any; children: any; value: any; index: a
     const {children, value, index, ...other} = props;
 
     return (
-        <GlobalProvider>
+
             <Typography
                 component="div"
                 role="tabpanel"
@@ -25,7 +25,7 @@ function TabPanel(props: { [x: string]: any; children: any; value: any; index: a
             >
                 {value === index && <Box p={3}>{children}</Box>}
             </Typography>
-        </GlobalProvider>
+
     );
 }
 
