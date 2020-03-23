@@ -9,7 +9,7 @@ export const demoReducer = (state: storeData = {data: 'NOT_SET'}, action: any) =
     switch(action.type){
         case STORE_DATA:
             console.log("STORE: " + action.payload);
-            return "true";
+            return {data: 'ZAC Did'};
         case GET_DATA:
             console.log("GET: " + action.payload);
             return action.payload;

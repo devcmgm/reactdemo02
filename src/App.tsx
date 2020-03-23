@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,33 +12,39 @@ import GlobalProvider from "./context/GlobalProvider";
 import theme from "./theme";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {ThunkAction, ThunkDispatch} from 'redux-thunk'
+import {AnyAction, Action} from 'redux';
 
 class App extends React.Component {
 
-    notify = () => { toast("Wow so easy !")
+    notify = () => {
+        toast("Wow so easy !")
         alert('works');
-     }
+        const rememberMe = localStorage.getItem('reduxPersist:demoReducer');
+        alert(rememberMe)
+        localStorage.setItem("works","Zac")
+    }
     value = 1
 
     public render() {
-     let classes = {
-         paper: {
-             padding: theme.spacing(2),
-             textAlign: 'center',
-             color: theme.palette.text.secondary,
-         },
-     };
-     return (
-      <div className='App-wrapper'>
-       <GlobalProvider>
-          Works
-           <button onClick={this.notify}></button>
-           <ToastContainer />
-       </GlobalProvider>
+        let classes = {
+            paper: {
+                padding: theme.spacing(2),
+                textAlign: 'center',
+                color: theme.palette.text.secondary,
+            },
+        };
+        return (
+            <div className='App-wrapper'>
+                <GlobalProvider>
+                    Works
+                    <button onClick={this.notify}></button>
+                    <ToastContainer/>
+                </GlobalProvider>
 
-      </div>
-  );
- }
+            </div>
+        );
+    }
 }
 
 export default App;
