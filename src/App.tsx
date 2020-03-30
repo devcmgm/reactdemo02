@@ -14,6 +14,8 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {AnyAction, Action} from 'redux';
+import {Container} from "@material-ui/core";
+import "./App.scss"
 
 class App extends React.Component {
 
@@ -22,7 +24,7 @@ class App extends React.Component {
         alert('works');
         const rememberMe = localStorage.getItem('reduxPersist:demoReducer');
         alert(rememberMe)
-        localStorage.setItem("works","Zac")
+        localStorage.setItem("works", "Zac")
     }
     value = 1
 
@@ -35,11 +37,19 @@ class App extends React.Component {
             },
         };
         return (
-            <div>
-                Works
-                <button onClick={this.notify}/>
-                <ToastContainer/>
-            </div>
+
+            <Grid container spacing={1}>
+                <Grid item xs={12} spacing={1} style={{backgroundColor: 'white'}}>
+                    Top Tool Bar
+                    <hr/>
+                    <Grid item xs={12} spacing={1} style={{backgroundColor: 'blue', height: '95vh'}}>
+                        <button onClick={this.notify}>Main Area</button>
+                        <ToastContainer/>
+                        <button className={"Feedback-Button"} onClick={this.notify}>Feedback</button>
+                    </Grid>
+                </Grid>
+            </Grid>
+
 
         );
     }
