@@ -35,14 +35,12 @@ class App extends React.Component {
             },
         };
         return (
-            <div className='App-wrapper'>
-                <GlobalProvider>
-                    Works
-                    <button onClick={this.notify}></button>
-                    <ToastContainer/>
-                </GlobalProvider>
-
+            <div>
+                Works
+                <button onClick={this.notify}/>
+                <ToastContainer/>
             </div>
+
         );
     }
 }
