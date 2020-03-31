@@ -37,15 +37,41 @@ class App extends React.Component {
             },
         };
         return (
-
             <Grid container spacing={1}>
-                <Grid item xs={12} spacing={1} style={{backgroundColor: 'white'}}>
+                <Grid item xs={12} spacing={1} className={"Grid-Main-Top"}>
                     Top Tool Bar
                     <hr/>
-                    <Grid item xs={12} spacing={1} style={{backgroundColor: 'blue', height: '95vh'}}>
-                        <button onClick={this.notify}>Main Area</button>
+                    <Grid item xs={12} spacing={1} className={"Grid-Main-Body"}>
+                        <button onClick={this.notify}>Discrepancy</button>
                         <ToastContainer/>
                         <button className={"Feedback-Button"} onClick={this.notify}>Feedback</button>
+                    </Grid>
+                    <Grid container>
+                        <Grid item xs={3} className={"Grid-Main-Body"}>
+                            JCN<br/>
+                            <button onClick={this.notify}>JCN</button>
+                            <ToastContainer/>
+                            <button onClick={this.notify}>Feedback</button>
+                        </Grid>
+                        <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
+                            Aircraft<br/>
+                            <button onClick={this.notify}>Aircraft</button>
+                            <ToastContainer/>
+                            <button onClick={this.notify}>Feedback</button>
+                        </Grid>
+
+                        <Grid item xs={3} spacing={1} className={"Grid-Main-Body"}>
+                            Part Number<br/>
+                            <button onClick={this.notify}>Part Number</button>
+                            <ToastContainer/>
+                            <button className={"Feedback-Button"} onClick={this.notify}>Feedback</button>
+                        </Grid>
+                        <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
+                            Serial
+                            <button onClick={this.notify}>Serial</button>
+                            <ToastContainer/>
+                            <button onClick={this.notify}>Feedback</button>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
