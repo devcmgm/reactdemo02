@@ -42,35 +42,48 @@ class App extends React.Component {
                     Top Tool Bar
                     <hr/>
                     <Grid item xs={12} spacing={1} className={"Grid-Main-Body"}>
-                        <button onClick={this.notify}>Discrepancy</button>
-                        <ToastContainer/>
-                        <button className={"Feedback-Button"} onClick={this.notify}>Feedback</button>
-                    </Grid>
+                        Discrepancy </Grid>
                     <Grid container>
-                        <Grid item xs={3} className={"Grid-Main-Body"}>
+                        <Grid item xs={3} className={"Grid-Serial"}>
                             JCN<br/>
-                            <button onClick={this.notify}>JCN</button>
-                            <ToastContainer/>
-                            <button onClick={this.notify}>Feedback</button>
                         </Grid>
                         <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
                             Aircraft<br/>
-                            <button onClick={this.notify}>Aircraft</button>
-                            <ToastContainer/>
-                            <button onClick={this.notify}>Feedback</button>
                         </Grid>
 
                         <Grid item xs={3} spacing={1} className={"Grid-Main-Body"}>
                             Part Number<br/>
-                            <button onClick={this.notify}>Part Number</button>
-                            <ToastContainer/>
-                            <button className={"Feedback-Button"} onClick={this.notify}>Feedback</button>
                         </Grid>
                         <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
-                            Serial
-                            <button onClick={this.notify}>Serial</button>
-                            <ToastContainer/>
-                            <button onClick={this.notify}>Feedback</button>
+                            Serial<br/>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
+                        Serial<br/>
+                    </Grid>
+                    <Grid container>
+                        <Grid container>
+                            <Grid item xs={6} spacing={1} >
+                               Specialist<br/>
+                               <Grid container>
+                                <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
+                                    Start Time<br/>
+                                </Grid>
+                                <Grid item xs={6} spacing={1} className={"Grid-Aircraft"}>
+                                    End Time<br/>
+                                </Grid>
+                               </Grid>
+                            </Grid>
+                            <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
+                                Remarks<br/>
+                            </Grid>
+                        </Grid>
+
+                        <Grid item xs={6} spacing={1} className={"Grid-Serial"}>
+                            Job Status<br/>
+                        </Grid>
+                        <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
+                            Document<br/>
                         </Grid>
                     </Grid>
                 </Grid>

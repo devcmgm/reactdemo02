@@ -14,9 +14,6 @@
      background-color: 'blue' !important;
  }
 
-.Grid-Aircraft {
-    background-color: 'green' !important;
-}
 
 .Grid-PartNumber {
     background-color: 'red' !important;;
@@ -27,9 +24,14 @@
 }
 
 .Grid-Main-Body {
-    height: 100pv;
-    background-color: grey !important;
-}
+     height: 100pv;
+     background-color: green !important;
+ }
+
+.Grid-Aircraft {
+     height: 100pv;
+     background-color: blue !important;
+ }
 
 .Grid-Main-Top {
     backgroundColor: 'grey';
