@@ -16,6 +16,11 @@ import {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import {AnyAction, Action} from 'redux';
 import {Container} from "@material-ui/core";
 import "./App.scss"
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormGroup from "@material-ui/core/FormGroup";
 
 class App extends React.Component {
 
@@ -54,11 +59,11 @@ class App extends React.Component {
                         <Grid item xs={3} spacing={1} className={"Grid-Main-Body"}>
                             Part Number<br/>
                         </Grid>
-                        <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
+                        <Grid item xs={3} spacing={1} >
                             Serial<br/>
                         </Grid>
                     </Grid>
-                    <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
+                    <Grid item xs={3} spacing={1} >
                         Serial<br/>
                     </Grid>
                     <Grid container>
@@ -81,9 +86,21 @@ class App extends React.Component {
 
                         <Grid item xs={6} spacing={1} className={"Grid-Serial"}>
                             Job Status<br/>
+                            <RadioGroup row={true} aria-label="gender" name="gender1"  onChange={this.handleChange}>
+                                <FormControlLabel value="NotStarted" control={<Radio />} label="Not Started" />
+                                <FormControlLabel value="Started" control={<Radio />} label="Started" />
+                                <FormControlLabel value="Completed" control={<Radio />} label="Completed" />
+                                <FormControlLabel value="Pause" control={<Radio />} label="Paused" />
+                            </RadioGroup>
+
                         </Grid>
                         <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
                             Document<br/>
+                            <FormGroup row={true} aria-label="gender"   onChange={this.handleChange}>
+                                <FormControlLabel value="NotStarted" control={<Checkbox />} label="Not Started" />
+                                <FormControlLabel value="Started" control={<Checkbox />} label="Started" />
+                                <FormControlLabel value="Completed" control={<Checkbox />} label="Completed" />
+                            </FormGroup>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -91,6 +108,10 @@ class App extends React.Component {
 
 
         );
+    }
+
+    private handleChange() {
+
     }
 }
 
