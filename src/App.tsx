@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,9 +21,17 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormGroup from "@material-ui/core/FormGroup";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import { TimePicker, KeyboardTimePicker } from "@material-ui/pickers";
+import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
+
+
+
+
 
 class App extends React.Component {
-
+  
     notify = () => {
         toast("Wow so easy !")
         alert('works');
@@ -33,6 +41,10 @@ class App extends React.Component {
     }
     value = 1
 
+    private handleDate(date: MaterialUiPickersDate) {
+        this.setState({ date: date });
+    }
+
     public render() {
         let classes = {
             paper: {
@@ -41,6 +53,8 @@ class App extends React.Component {
                 color: theme.palette.text.secondary,
             },
         };
+
+
         return (
             <Grid container spacing={1}>
                 <Grid item xs={12} spacing={1} className={"Grid-Main-Top"}>
@@ -73,6 +87,14 @@ class App extends React.Component {
                                <Grid container>
                                 <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
                                     Start Time<br/>
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                        <TimePicker
+                                            variant="inline"
+                                            label="Inline mode"
+                                            value={{}}
+                                            onChange={this.handleDate}
+                                        />
+                                    </MuiPickersUtilsProvider>
                                 </Grid>
                                 <Grid item xs={6} spacing={1} className={"Grid-Aircraft"}>
                                     End Time<br/>
