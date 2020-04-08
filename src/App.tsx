@@ -25,13 +25,24 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { TimePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
+import {connect} from "react-redux";
+import {fetchPostsIfNeeded} from "./redux/actions";
+import OfflineSync from "./component/OfflineSync";
+interface Props {
+    selectedSubreddit: string,
+    posts: [],
+    isFetching: boolean,
+    lastUpdated: number,
+    dispatch: any
+}
 
+class App extends React.Component<Props> {
 
+    componentDidMount() {
+        const { dispatch, selectedSubreddit } = this.props
+        dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    }
 
-
-
-class App extends React.Component {
-  
     notify = () => {
         toast("Wow so easy !")
         alert('works');
@@ -57,6 +68,7 @@ class App extends React.Component {
 
         return (
             <Grid container spacing={1}>
+                <OfflineSync />
                 <Grid item xs={12} spacing={1} className={"Grid-Main-Top"}>
                     Top Tool Bar
                     <hr/>
@@ -137,4 +149,23 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state: { selectedSubreddit: any; postsBySubreddit: any; }) => {
+    const { selectedSubreddit, postsBySubreddit } = state
+    const {
+        isFetching,
+        lastUpdated,
+        items: posts
+    } = postsBySubreddit[selectedSubreddit] || {
+        isFetching: true,
+        items: []
+    }
+
+    return {
+        selectedSubreddit,
+        posts,
+        isFetching,
+        lastUpdated
+    }
+}
+
+export default connect(mapStateToProps)(App)
