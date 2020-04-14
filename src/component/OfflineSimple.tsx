@@ -28,6 +28,7 @@ import {connect} from "react-redux";
 import { fetchPostsIfNeeded, invalidateSubreddit, selectSubreddit} from "../redux/actions";
 import Posts from "./Posts";
 import Picker from "./Picker";
+import {parseJSON} from "date-fns";
 interface Props {
     selectedSubreddit: string,
     posts: [],
@@ -35,33 +36,13 @@ interface Props {
     lastUpdated: number,
     dispatch: any
 }
-
 export interface StoreData {
     data: string;
 }
-
-class OfflineSync extends React.Component<Props> {
+class OfflineSync extends React.Component {
 
     componentDidMount() {
-        const { dispatch, selectedSubreddit } = this.props
-        dispatch(fetchPostsIfNeeded(selectedSubreddit))
 
-    }
-
-    handleChange = (nextSubreddit: any) => {
-        const { dispatch, selectedSubreddit } = this.props
-        dispatch(selectSubreddit(nextSubreddit));
-        dispatch(fetchPostsIfNeeded(nextSubreddit))
-        this.notify(selectedSubreddit)
-    }
-
-    handleRefreshClick = (e: { preventDefault: () => void; }) => {
-        e.preventDefault()
-
-        const { dispatch, selectedSubreddit } = this.props
-
-        dispatch(invalidateSubreddit(selectedSubreddit))
-        dispatch(fetchPostsIfNeeded(selectedSubreddit))
     }
 
     notify = (data: any) => {
@@ -70,40 +51,24 @@ class OfflineSync extends React.Component<Props> {
         console.log(data)
         localStorage.setItem("priorSelectedState", data)
         const rememberMe = localStorage.getItem('reduxPersist:demoReducer');
-        //alert(rememberMe)
-        alert(localStorage.getItem("reduxPersist:offline"))
-        //localStorage.setItem("works", "Zac")
+        // @ts-ignore
+        const offlineJson = localStorage.getItem("reduxPersist:offline").toString()
+        const data1 = JSON.parse(offlineJson)
+        // @ts-ignore
+        if (data1.online)
+           alert("Online" + data1.online)
+        else
+            alert("Offline YES Works(" + data1.online + ")")
     }
     value = 1
 
     public render() {
-        const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
-        const isEmpty = posts.length === 0
-
         return (
             <div>
-                    <Picker value={selectedSubreddit}
-                            onChange={this.handleChange}
-                            options={[ 'reactjs', 'frontend' ]} />
-                    <p>
-                        {lastUpdated &&
-                        <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-                            {' '}
-            </span>
-                        }
-                        {!isFetching &&
-                        <button onClick={this.handleRefreshClick}>
+
+                <button onClick={this.notify}>
                             Refresh
-                        </button>
-                        }
-                    </p>
-                    {isEmpty
-                        ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-                        : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                            <Posts posts={posts} />
-                        </div>
-                    }
+                </button>
             </div>
         );
     }
@@ -111,21 +76,9 @@ class OfflineSync extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: any) => {
-    const { selectedSubreddit, postsBySubreddit, offline } = state
-    const {
-        isFetching,
-        lastUpdated,
-        items: posts
-    } = postsBySubreddit[selectedSubreddit] || {
-        isFetching: true,
-        items: []
-    }
+    const { offline } = state
 
     return {
-        selectedSubreddit,
-        posts,
-        isFetching,
-        lastUpdated,
         offline
     }
 }

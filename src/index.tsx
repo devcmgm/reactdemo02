@@ -11,6 +11,7 @@ import rootReducer from "./redux/reducers/rootReducer";
 import OfflineSync from "./component/OfflineSync";
 import { offline } from '@redux-offline/redux-offline';
 import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
+import OfflineSimple from "./component/OfflineSimple";
 
 declare global {
     interface Window { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any }
@@ -42,7 +43,7 @@ const store = createStore(
 
 render(
     <Provider store={store}>
-        <OfflineSync />
+        <OfflineSimple/>
         <App/>
     </Provider>,
     document.getElementById('root')
