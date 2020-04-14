@@ -16,7 +16,7 @@ const selectedSubreddit = (state = 'covid', action: { type: any; subreddit: [] }
 interface PostParam {
     didInvalidate: boolean;
     isFetching: boolean;
-    items: []
+    items: [],
 }
 
 const initialState: PostParam = {

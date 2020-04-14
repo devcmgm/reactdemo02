@@ -36,12 +36,11 @@ interface Props {
     dispatch: any
 }
 
-class App extends React.Component<Props> {
+export interface StoreData {
+    data: string;
+}
 
-    componentDidMount() {
-        const { dispatch, selectedSubreddit } = this.props
-        dispatch(fetchPostsIfNeeded(selectedSubreddit))
-    }
+class App extends React.Component {
 
     notify = () => {
         toast("Wow so easy !")
@@ -68,73 +67,17 @@ class App extends React.Component<Props> {
 
         return (
             <Grid container spacing={1}>
-                <OfflineSync />
                 <Grid item xs={12} spacing={1} className={"Grid-Main-Top"}>
                     Top Tool Bar
                     <hr/>
                     <Grid item xs={12} spacing={1} className={"Grid-Main-Body"}>
                         Discrepancy </Grid>
                     <Grid container>
-                        <Grid item xs={3} className={"Grid-Serial"}>
-                            JCN<br/>
-                        </Grid>
-                        <Grid item xs={3} spacing={1} className={"Grid-Aircraft"}>
-                            Aircraft<br/>
-                        </Grid>
-
-                        <Grid item xs={3} spacing={1} className={"Grid-Main-Body"}>
-                            Part Number<br/>
-                        </Grid>
-                        <Grid item xs={3} spacing={1} >
-                            Serial<br/>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={3} spacing={1} >
-                        Serial<br/>
-                    </Grid>
-                    <Grid container>
-                        <Grid container>
-                            <Grid item xs={6} spacing={1} >
-                               Specialist<br/>
-                               <Grid container>
-                                <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
-                                    Start Time<br/>
-                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <TimePicker
-                                            variant="inline"
-                                            label="Inline mode"
-                                            value={{}}
-                                            onChange={this.handleDate}
-                                        />
-                                    </MuiPickersUtilsProvider>
-                                </Grid>
-                                <Grid item xs={6} spacing={1} className={"Grid-Aircraft"}>
-                                    End Time<br/>
-                                </Grid>
-                               </Grid>
-                            </Grid>
-                            <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
-                                Remarks<br/>
-                            </Grid>
-                        </Grid>
-
                         <Grid item xs={6} spacing={1} className={"Grid-Serial"}>
-                            Job Status<br/>
-                            <RadioGroup row={true} aria-label="gender" name="gender1"  onChange={this.handleChange}>
-                                <FormControlLabel value="NotStarted" control={<Radio />} label="Not Started" />
-                                <FormControlLabel value="Started" control={<Radio />} label="Started" />
-                                <FormControlLabel value="Completed" control={<Radio />} label="Completed" />
-                                <FormControlLabel value="Pause" control={<Radio />} label="Paused" />
-                            </RadioGroup>
-
+                           Split
                         </Grid>
                         <Grid item xs={6} spacing={1} className={"Grid-Main-Body"}>
-                            Document<br/>
-                            <FormGroup row={true} aria-label="gender"   onChange={this.handleChange}>
-                                <FormControlLabel value="NotStarted" control={<Checkbox />} label="Not Started" />
-                                <FormControlLabel value="Started" control={<Checkbox />} label="Started" />
-                                <FormControlLabel value="Completed" control={<Checkbox />} label="Completed" />
-                            </FormGroup>
+                           Two Split
                         </Grid>
                     </Grid>
                 </Grid>
@@ -149,23 +92,4 @@ class App extends React.Component<Props> {
     }
 }
 
-const mapStateToProps = (state: { selectedSubreddit: any; postsBySubreddit: any; }) => {
-    const { selectedSubreddit, postsBySubreddit } = state
-    const {
-        isFetching,
-        lastUpdated,
-        items: posts
-    } = postsBySubreddit[selectedSubreddit] || {
-        isFetching: true,
-        items: []
-    }
-
-    return {
-        selectedSubreddit,
-        posts,
-        isFetching,
-        lastUpdated
-    }
-}
-
-export default connect(mapStateToProps)(App)
+export default App

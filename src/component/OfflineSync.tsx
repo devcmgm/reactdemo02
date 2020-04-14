@@ -25,7 +25,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { TimePicker, KeyboardTimePicker } from "@material-ui/pickers";
 import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
 import {connect} from "react-redux";
-import {fetchPostsIfNeeded, invalidateSubreddit, selectSubreddit} from "../redux/actions";
+import { fetchPostsIfNeeded, invalidateSubreddit, selectSubreddit} from "../redux/actions";
 import Posts from "./Posts";
 import Picker from "./Picker";
 interface Props {
@@ -34,6 +34,10 @@ interface Props {
     isFetching: boolean,
     lastUpdated: number,
     dispatch: any
+}
+
+export interface StoreData {
+    data: string;
 }
 
 class OfflineSync extends React.Component<Props> {
@@ -46,6 +50,7 @@ class OfflineSync extends React.Component<Props> {
     handleChange = (nextSubreddit: any) => {
         const { dispatch, selectedSubreddit } = this.props
         dispatch(selectSubreddit(nextSubreddit));
+
         dispatch(fetchPostsIfNeeded(nextSubreddit))
         this.notify(selectedSubreddit)
     }
@@ -60,12 +65,12 @@ class OfflineSync extends React.Component<Props> {
 
     notify = (data: any) => {
         toast("Wow so easy !")
-        alert('works' + data.toString());
+        alert('Fetch What Now: works' + data.toString());
         console.log(data)
 
-        const rememberMe = localStorage.getItem('reduxPersist:demoReducer');
-        alert(rememberMe)
-        localStorage.setItem("works", "Zac")
+        //const rememberMe = localStorage.getItem('reduxPersist:demoReducer');
+        //alert(rememberMe)
+        //localStorage.setItem("works", "Zac")
     }
     value = 1
 
@@ -74,11 +79,7 @@ class OfflineSync extends React.Component<Props> {
         const isEmpty = posts.length === 0
 
         return (
-            <Grid container spacing={1}>
-                <Grid item xs={6} spacing={1} className={"Grid-Main-Top"}>
-                    Right
-                </Grid>
-                <Grid item xs={6} spacing={1} className={"Grid-Main-Top"}>
+            <div>
                     <Picker value={selectedSubreddit}
                             onChange={this.handleChange}
                             options={[ 'reactjs', 'frontend' ]} />
@@ -101,17 +102,14 @@ class OfflineSync extends React.Component<Props> {
                             <Posts posts={posts} />
                         </div>
                     }
-                </Grid>
-            </Grid>
-
-
+            </div>
         );
     }
 
 }
 
-const mapStateToProps = (state: { selectedSubreddit: any; postsBySubreddit: any; }) => {
-    const { selectedSubreddit, postsBySubreddit } = state
+const mapStateToProps = (state: any) => {
+    const { selectedSubreddit, postsBySubreddit, offline } = state
     const {
         isFetching,
         lastUpdated,
@@ -125,7 +123,8 @@ const mapStateToProps = (state: { selectedSubreddit: any; postsBySubreddit: any;
         selectedSubreddit,
         posts,
         isFetching,
-        lastUpdated
+        lastUpdated,
+        offline
     }
 }
 
