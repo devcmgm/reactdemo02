@@ -1,0 +1,44 @@
+// units, measures and weights ////////////////////////
+
+$major-unit: 8.538rem; // a 'large' measure
+$minor-unit: 0.25rem; // a 'tiny' measure
+
+// major scale
+$major-first:      1  * $major-unit;
+$major-second:     2  * $major-unit;
+$major-third:      3  * $major-unit;
+$major-fourth:     4  * $major-unit;
+$major-fifth:      5  * $major-unit;
+$major-sixth:      6  * $major-unit;
+$major-seventh:    7  * $major-unit;
+$major-eighth:     8  * $major-unit;
+$major-ninth:      9  * $major-unit;
+$major-tenth:      10 * $major-unit;
+$major-eleventh:   11 * $major-unit;
+$major-twelfth:    12 * $major-unit;
+$major-thirteenth: 13 * $major-unit;
+
+// minor scale
+$minor-first:       1  * $minor-unit;
+$minor-second:      2  * $minor-unit;
+$minor-third:       3  * $minor-unit;
+$minor-fourth:      4  * $minor-unit;
+$minor-fifth:       5  * $minor-unit;
+$minor-sixth:       6  * $minor-unit;
+$minor-seventh:     7  * $minor-unit;
+$minor-eighth:      8  * $minor-unit;
+$minor-ninth:       9  * $minor-unit;
+$minor-tenth:       10 * $minor-unit;
+$minor-eleventh:    11 * $minor-unit;
+$minor-twelfth:     12 * $minor-unit;
+$minor-thirteenth:  13 * $minor-unit;
+$minor-fourteenth:  14 * $minor-unit;
+$minor-fifteenth:   15 * $minor-unit;
+$minor-sixteenth:   16 * $minor-unit;
+$minor-seventeenth: 17 * $minor-unit;
+
+// measures
+$button-border-radius: $minor-first;
+
+$form-control-width:  307px;
+$form-control-height: 40px;

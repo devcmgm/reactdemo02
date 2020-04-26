@@ -1,0 +1,25 @@
+@import './palette';
+
+// brand
+$brand-primary: $havelock;
+$brand-secondary: $gulf;
+$brand-success: $harlequin;
+$brand-warning: $gold-tips;
+$brand-info: $airforce;
+$brand-error: $monza;
+
+// styleguide kernel
+$background-color: $light-space;
+$text-gray: $abbey;
+$header-blue: $brand-secondary;
+$button-primary: $brand-primary;
+$button-inactive: $perano;
+$border-color: $alto;
+
+
+// app basics
+$app-bg: $background-color;
+$app-fg: $text-gray;
+
+$page-header-bg: $header-blue;
+$page-header-fg: white;

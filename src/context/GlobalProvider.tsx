@@ -2,13 +2,29 @@ import React, {Component} from "react";
 import GlobalContext from "./GlobalContext";
 
 interface State {
-   data: string;
+    isPrimary: boolean;
+    setPrimary: (boolean: boolean) => void;
+
+    getTab: number;
+    setTab: (number: number) => void;
 }
 
 class GlobalProvider extends Component<{}, State> {
 
+    public setPrimary = (primary: boolean) => {
+        this.setState({isPrimary: primary})
+    }
+
+    public setTab = (tab: number) => {
+        this.setState({getTab: tab})
+    }
+
     public state: State = {
-        data: 'data start'
+        isPrimary: true,
+        setPrimary: this.setPrimary,
+
+        getTab: 1,
+        setTab: this.setTab
     };
 
     public render() {

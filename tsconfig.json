@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
+    ],
+    "types": [
+      "jest"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,7 +20,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "noImplicitAny": false
   },
   "include": [
     "src"

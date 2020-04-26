@@ -1,50 +1,32 @@
-import React from 'react'
-import { render } from 'react-dom'
-import {createStore, applyMiddleware, compose} from 'redux'
-import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
-import { logger } from 'redux-logger'
-import cookie from "react-cookies";
-import App from './App';
-import axios from "axios";
-import rootReducer from "./redux/reducers/rootReducer";
-import OfflineSync from "./component/OfflineSync";
-import { offline } from '@redux-offline/redux-offline';
-import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
-import OfflineSimple from "./component/OfflineSimple";
-
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import {Provider} from "react-redux";
+import reduxStore from './redux/store'
 declare global {
     interface Window { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any }
 }
-let csrfToken = cookie.load('XSRF-TOKEN');
+//let csrfToken = cookie.load('XSRF-TOKEN');
+//let instance = axios.create({ headers: { 'X-XSRF-TOKEN': csrfToken }});
 
-let instance = axios.create({ headers: { 'X-XSRF-TOKEN': csrfToken }});
-const middleware = [ thunk ]
 
-interface Props {
-    selectedSubreddit: string,
-    posts: [],
-    isFetching: boolean,
-    lastUpdated: number,
-    dispatch: any
+// Redux Dev Tools
+declare global {
+    interface Window { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any }
 }
 
-export interface StoreData {
-    data: string;
+const root = document.getElementById("root");
+if (root instanceof HTMLDivElement) {
+    const store = reduxStore;
+    // const render = () =>
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        root
+    );
+    serviceWorker.register();
 }
 
-const store = createStore(
-    rootReducer,
-    compose(
-        applyMiddleware(...middleware, logger),
-        offline(offlineConfig)
-    )
-);
-
-render(
-    <Provider store={store}>
-        <OfflineSimple/>
-        <App/>
-    </Provider>,
-    document.getElementById('root')
-)
+export default App;

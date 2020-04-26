@@ -1,0 +1,22 @@
+@import './palette';
+
+// typography //////////////////////////////////////////////////////
+@import url('https://fonts.googleapis.com/css?family=Audiowide&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700,900&display=swap');
+$overpass: "Overpass";
+$audiowide: "Audiowide";
+$font-stack: $overpass;
+//// app layer
+
+$button-text-size: 18px;
+$button-text-letter-spacing: 0.56px;
+$button-text-font-weight: 900;
+
+$message-box-text-size: 18px;
+$message-box-text-color: $shark;
+
+$message-box-title-text-size: 22px;
+$message-box-title-text-color: $shark;
+$message-box-title-font-weight: 900;
+
+// $simple-modal-title-text

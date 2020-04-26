@@ -1,7 +1,17 @@
 import {Context, createContext} from 'react';
 
 export interface GlobeContext {
-    data: string
+    isPrimary: boolean;
+    setPrimary: (boolean: boolean) => void;
+
+    getTab: number;
+    setTab: (number: number) => void;
+
+    message?: string;
+
+    logContent?: string;
+    logName?: string;
+
 }
 
 export interface OfflineContext {
@@ -9,7 +19,12 @@ export interface OfflineContext {
 }
 
 const globalContext: Context<GlobeContext> = createContext<GlobeContext>({
-  data: 'global data'
+    isPrimary: true,
+    setPrimary: () => {},
+
+    getTab: 1,
+    setTab: () => {},
+
 });
 
 export default globalContext;

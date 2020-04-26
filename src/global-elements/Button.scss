@@ -1,0 +1,46 @@
+@import 'src/style/base';
+
+.Button {
+  margin: $minor-second;
+  padding: $minor-first $minor-fifth;
+  height: $minor-tenth;
+  min-width: $major-first + $minor-fifth;
+
+  font-size: $button-text-size;
+  font-weight: $button-text-font-weight;
+  letter-spacing: $button-text-letter-spacing;
+  border-radius: $button-border-radius;
+
+  cursor: pointer;
+  text-transform: uppercase;
+  border: 0px;
+
+  .Button--icon {
+    margin-right: $minor-second;
+  }
+
+  &.Button__disabled {
+    color: $chateau;
+    cursor: default;
+  }
+
+  &.Button__small {
+    margin: $minor-second;
+    padding: $minor-first $minor-first;
+    height: $minor-eighth;
+    min-width: $minor-eighth * 3;
+  }
+}
+
+.Button--primary {
+  background-color: $button-primary;
+  color: white;
+  font-weight: bolder;
+  min-height: $minor-fourteenth;
+
+  &.Button__disabled {
+    background-color: $button-inactive;
+    cursor: default;
+  }
+}
+
