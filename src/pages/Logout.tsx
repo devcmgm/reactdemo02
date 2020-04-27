@@ -34,7 +34,7 @@ class Logout extends React.Component<RouteComponentProps> {
             <div className="Welcome--wrapper">
                 <h1>Logout</h1>
                 Yes you got here.  {this.user.children}
-                <Button.Primary className="welcome-button" onClick={this.onClick.bind(this)}>Go Home</Button.Primary>
+                <Button.Primary className="logout-button" onClick={this.onClick}>Go Home</Button.Primary>
 
             </div>
         )

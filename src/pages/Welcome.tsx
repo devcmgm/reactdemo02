@@ -8,31 +8,63 @@ import {connect} from "react-redux";
 import {User} from "../models/User";
 import {Hidden} from "@material-ui/core";
 import './Welcome.scss'
+import {Simulate} from "react-dom/test-utils";
 
 interface ReduxProps {
     user: User;
+    i: number;
+    users: []
 }
 
 
 interface State {
-    user: String;
+    user: string;
+    i: number;
+    musers: User[]
 }
 
 class Welcome extends React.Component<RouteComponentProps, State> {
-   me = ''
+    constructor(props) {
+        super(props);
+        this.state = {
+            i: 0,
+            user: 'none',
+            musers: []
+        }
+        this.loadData();
+    }
+    data2 = ""
+    // @ts-ignore
+    theusers: User = []
+
     public componentDidMount(): void {
-        this.onClick()
+
+
 
     }
 
-   // me = this.state.user;
-    public onClick = async () => {
-        await UserService.getAuthenticatedUser().then((user) => {
-            this.setState({user: user.username})
-        });
+    private async loadData() {
+        await UserService.getAuthenticatedUser().then((users) => {
 
+            console.log(users[this.state.i].username)
+            this.data2 = users[this.state.i].username
+            this.setState({user: users[this.state.i].username})
+            // @ts-ignore
+            this.setState({i: 0, user: users[this.state.i].username, musers: users})
+            this.theusers = users
+        });
+    }
+    public name2 = () => {
+        this.setState({i: this.state.i + 1})
+        this.data2 = this.theusers[this.state.i].username
+        alert("Works:" + this.state.i + " - " + this.theusers[this.state.i].username)
+    }
+    public onClick = async () => {
+
+        this.setState({i: this.state.i + 1})
         await UserService.ready().then((success: boolean) => {
             if (success) {
+                alert('works')
                 this.props.history.push(`/logout`);
             } else {
                 toast.error(TOAST_MESSAGES.WELCOME_ERROR, {
@@ -46,13 +78,15 @@ class Welcome extends React.Component<RouteComponentProps, State> {
     };
 
 
-
     public render() {
         return (
             <div className="Welcome--wrapper">
-             <h1>Welcome</h1>
+                <h1>Welcome</h1>
                 Yes you got here.
+
+                {this.data2 ? this.data2 : 'work'}
                 <Button.Primary className="welcome-button" onClick={this.onClick.bind(this)}>Start Here</Button.Primary>
+                <Button.Primary className="welcome-button" onClick={this.name2.bind(this)}>Start Here</Button.Primary>
 
             </div>
         )
