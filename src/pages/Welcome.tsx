@@ -9,6 +9,9 @@ import {User} from "../models/User";
 import {Hidden} from "@material-ui/core";
 import './Welcome.scss'
 import {Simulate} from "react-dom/test-utils";
+import store from '../redux/store'
+import {offline} from "@redux-offline/redux-offline";
+
 
 interface ReduxProps {
     user: User;
@@ -21,21 +24,30 @@ interface State {
     user: string;
     i: number;
     musers: User[]
+    id: number;
+    email: string;
+    offline: any;
 }
 
 class Welcome extends React.Component<RouteComponentProps, State> {
+
     constructor(props) {
         super(props);
+        const zac = store.getState();
         this.state = {
             i: 0,
             user: 'none',
-            musers: []
+            musers: [],
+            email: '',
+            id: 0,
+            offline: offline
         }
         this.loadData();
     }
     data2 = ""
     // @ts-ignore
     theusers: User = []
+    online = true
 
     public componentDidMount(): void {
 
@@ -48,6 +60,7 @@ class Welcome extends React.Component<RouteComponentProps, State> {
 
             console.log(users[this.state.i].username)
             this.data2 = users[this.state.i].username
+
             this.setState({user: users[this.state.i].username})
             // @ts-ignore
             this.setState({i: 0, user: users[this.state.i].username, musers: users})
@@ -55,6 +68,7 @@ class Welcome extends React.Component<RouteComponentProps, State> {
         });
     }
     public name2 = () => {
+
         this.setState({i: this.state.i + 1})
         this.data2 = this.theusers[this.state.i].username
         alert("Works:" + this.state.i + " - " + this.theusers[this.state.i].username)
@@ -85,8 +99,8 @@ class Welcome extends React.Component<RouteComponentProps, State> {
                 Yes you got here.
 
                 {this.data2 ? this.data2 : 'work'}
-                <Button.Primary className="welcome-button" onClick={this.onClick.bind(this)}>Start Here</Button.Primary>
-                <Button.Primary className="welcome-button" onClick={this.name2.bind(this)}>Start Here</Button.Primary>
+                <Button.Primary className="welcome-button" onClick={this.onClick.bind(this)}>Page Here</Button.Primary>
+                <Button.Primary className="welcome-button" onClick={this.name2.bind(this)}>Next Namee</Button.Primary>
 
             </div>
         )
@@ -94,8 +108,10 @@ class Welcome extends React.Component<RouteComponentProps, State> {
 }
 
 const mapStateToProps = (state: any) => {
+   const { users, offline } = state
     return {
-        user: state.user
+        user: state.user,
+        offline: state.offline
     }
 };
 
