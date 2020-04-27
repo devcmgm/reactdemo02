@@ -10,8 +10,9 @@ interface ReduxProps {
 
 class AppManager extends React.Component<ReduxProps> {
     public async componentDidMount() {
-        let {fetchUserFn } = this.props;
+        let {fetchUserFn} = this.props;
         await fetchUserFn();
+
     }
 
     public render() {

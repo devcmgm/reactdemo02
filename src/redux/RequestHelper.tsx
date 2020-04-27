@@ -14,7 +14,7 @@ const get = (url: string): Promise<any> => { // eslint-disable-line @typescript-
 
 type ValidPostOperations = { message: string }  ;
 
-const post = (url: string, params?: ValidPostOperations): Promise<any> => { // eslint-disable-line @typescript-eslint/no-explicit-any
+const post = (url: string, params?: any): Promise<any> => { // eslint-disable-line @typescript-eslint/no-explicit-any
     return instance.post(url, params).catch(err => err.request);
 };
 

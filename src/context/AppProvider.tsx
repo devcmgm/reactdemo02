@@ -13,12 +13,13 @@ export default class AppProvider extends Component<{}, State> {
     public fetchUser = async () => {
         const user = await UserService.getAuthenticatedUser();
         this.setState({ user })
+        console.log("Debug: " + user)
     };
 
     public state: State = {
         user: {
             username: '',
-            unit: '',
+            role: '',
         },
         fetchUser: this.fetchUser,
     };

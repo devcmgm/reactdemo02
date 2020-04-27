@@ -11,22 +11,29 @@ import './Welcome.scss'
 
 interface ReduxProps {
     user: User;
-    offline: any;
-    location: any;
-    history: any;
 }
 
 
 interface State {
-    updateIntervalID: any;
-
+    user: String;
 }
 
-class Welcome extends React.Component<RouteComponentProps> {
+class Welcome extends React.Component<RouteComponentProps, State> {
+   me = ''
+    public componentDidMount(): void {
+        this.onClick()
+
+    }
+
+   // me = this.state.user;
     public onClick = async () => {
+        await UserService.getAuthenticatedUser().then((user) => {
+            this.setState({user: user.username})
+        });
+
         await UserService.ready().then((success: boolean) => {
             if (success) {
-                this.props.history.push("/home");
+                this.props.history.push(`/logout`);
             } else {
                 toast.error(TOAST_MESSAGES.WELCOME_ERROR, {
                     className: 'welcome-error-message',
@@ -37,6 +44,8 @@ class Welcome extends React.Component<RouteComponentProps> {
             }
         });
     };
+
+
 
     public render() {
         return (

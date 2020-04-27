@@ -23,7 +23,7 @@ const AppContext: Context<AppProps> = createContext<AppProps> (
     {
         user: {
             username: '',
-            unit: '',
+            role: '',
         },
         fetchUser: () => {}
     }

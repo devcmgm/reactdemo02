@@ -3,6 +3,7 @@ import ApiHelper from "../apiHelper";
 
 export default class UserService {
     public static async getAuthenticatedUser(): Promise<User> {
+        console.log("GET USER HERE")
         return await ApiHelper.getAuthorizedUser();
     }
 

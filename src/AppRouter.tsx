@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Route, RouteComponentProps, Switch} from 'react-router-dom';
 import Welcome from "./pages/Welcome";
+import Logout from "./pages/Logout";
+import Data from "./pages/Data";
 //import LogoutVerify from "./tabs/logout/LogoutTab";
 
 const AppRouter: React.FC = (props) => {
@@ -14,9 +16,9 @@ const AppRouter: React.FC = (props) => {
                     )}
                 />
                 <Route exact
-                    path="/logoutverify"
+                    path="/logout"
                     render={(props: RouteComponentProps) => (
-                        <Welcome {...props} />)
+                        <Logout {...props} />)
                     }
                 />
                 <Route exact
@@ -24,6 +26,12 @@ const AppRouter: React.FC = (props) => {
                     render={(props: RouteComponentProps) =>
                         <Welcome {...props} />
                     }
+                />
+                <Route exact
+                       path="/authorizedUser"
+                       render={(props: RouteComponentProps) =>
+                           <Data {...props} />
+                       }
                 />
             </Switch>
             {props.children}

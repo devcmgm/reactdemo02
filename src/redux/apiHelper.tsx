@@ -1,18 +1,18 @@
 import RequestHelper from "./RequestHelper";
 import {User} from "../models/User";
 
-const apiBase = process.env.REACT_APP_API_URL || "";
+const apiBase = "http://localhost:3000";  //process.env.REACT_APP_API_URL || "";
 
 
 /* #### User Data #### */
 const getAuthorizedUser = async (): Promise<User> => {
-    const response = await RequestHelper.get(`${apiBase}/authorizedUser`);
+    const response = await RequestHelper.get("https://jsonplaceholder.typicode.com/users");
     return response.data;
 };
 
 const ready = async (): Promise<boolean> => {
-    const response = await RequestHelper.get(`${apiBase}/logout`);
-    return response.status === 200;
+    const response = await RequestHelper.get("https://jsonplaceholder.typicode.com/users");
+    return true ;//response.status === 200;
 };
 
 
