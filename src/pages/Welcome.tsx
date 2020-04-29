@@ -11,12 +11,14 @@ import './Welcome.scss'
 import {Simulate} from "react-dom/test-utils";
 import store from '../redux/store'
 import {offline} from "@redux-offline/redux-offline";
-
+import {Snack} from "../redux/reducers/snackReducer";
+import {handleSnack} from "../redux/actions/snack";
 
 interface ReduxProps {
     user: User;
     i: number;
-    users: []
+    users: [];
+    handleSnackFn: (snack: Snack) => void;
 }
 
 
@@ -29,7 +31,7 @@ interface State {
     offline: any;
 }
 
-class Welcome extends React.Component<RouteComponentProps, State> {
+class Welcome extends React.Component<RouteComponentProps & ReduxProps, State> {
 
     constructor(props) {
         super(props);
@@ -74,6 +76,11 @@ class Welcome extends React.Component<RouteComponentProps, State> {
         alert("Works:" + this.state.i + " - " + this.theusers[this.state.i].username)
     }
     public onClick = async () => {
+        this.props.handleSnackFn({
+            snackbarOpen: true,
+            snackbarMessage: 'Success: Job created!',
+            snackbarSeverity: 'success'
+        });
 
         this.setState({i: this.state.i + 1})
         await UserService.ready().then((success: boolean) => {
@@ -111,8 +118,17 @@ const mapStateToProps = (state: any) => {
    const { users, offline } = state
     return {
         user: state.user,
-        offline: state.offline
+        offline: state.offline,
     }
+    
 };
 
-export default withRouter(connect(mapStateToProps, null)(Welcome));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleSnackFn: (snack: Snack) => {
+            dispatch(handleSnack(snack));
+        }
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Welcome));

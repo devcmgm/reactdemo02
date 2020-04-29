@@ -1,3 +1,9 @@
+export interface Snack {
+    snackbarOpen: boolean;
+    snackbarMessage: string;
+    snackbarSeverity: "error"|"success"|"info"|"warning";
+}
+
 export interface SnackAction {
     snackbarOpen: boolean;
     snackbarMessage: string;
