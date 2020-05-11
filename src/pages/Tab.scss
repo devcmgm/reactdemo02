@@ -1,0 +1,58 @@
+@import 'src/style/base';
+
+.Tab {
+    height: 50px;
+    min-width: 300px;
+    margin-right: 10px;
+    text-align: left;
+    align-items: center;
+    background-color: #F0F0F0;
+
+    font-size: $button-text-size;
+    letter-spacing: $button-text-letter-spacing;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    cursor: pointer;
+    border: 0 !important;
+    outline: none !important;
+
+    &:active {
+        border: 0 !important;
+        outline: none !important;
+    }
+
+    &:focus {
+        border: 0 !important;
+        outline: none !important;
+    }
+
+    .Tab--icon {
+        margin-right: $minor-second;
+    }
+
+    &.Tab__disabled {
+        color: $chateau;
+        cursor: default;
+    }
+
+    &.Tab__small {
+        margin: $minor-second;
+        padding: $minor-first $minor-first;
+        height: $minor-eighth;
+        min-width: $minor-eighth * 3;
+    }
+}
+
+.Tab--primary {
+    color: white;
+    font-weight: bolder;
+    min-height: $minor-fourteenth;
+
+    &.Tab__disabled {
+        background-color: $button-inactive;
+        cursor: default;
+    }
+}
+

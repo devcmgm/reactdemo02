@@ -24,11 +24,9 @@ import {withGlobal} from "../context/withGlobal";
 import {GlobeContext} from "../context/GlobalContext";
 import BuildIcon from '@material-ui/icons/Build'
 import NotesIcon from '@material-ui/icons/Notes';
-import StartHere from './StartHere'
-import { getAuthenticatedUser } from '../redux/actions/user';
 
 interface ReduxProps {
-   offline: any
+    offline: boolean;
 }
 
 
@@ -38,31 +36,77 @@ interface State {
 
 type Props = RouteComponentProps & ReduxProps
 
-class Welcome extends React.Component<Props, State> {
-
-    public constructor(props) {
-        super(props);
+class StartHere extends React.Component<Props, State> {
+    handleSnackFn(arg0: { snackbarOpen: boolean; snackbarMessage: string; snackbarSeverity: string; }) {
+        throw new Error("Method not implemented.");
     }
 
+    constructor(props) {
+        super(props);
+        const zac = store.getState();
+        this.state = {
+            offline: offline
+        }
+        this.loadData();
+    }
+
+    data2 = ""
+    // @ts-ignore
+    theusers: User = []
+    online = true
+
+    public componentDidMount(): void {
+
+
+    }
+
+    private async loadData() {
+        await UserService.getAuthenticatedUser().then((users) => {
+            console.log(users)
+
+           this.theusers = users
+        });
+    }
+
+    public name2 = () => {
+        alert("Works:")
+    }
+    public onClick = async () => {
+        this.handleSnackFn({
+            snackbarOpen: true,
+            snackbarMessage: 'Success: Job created!',
+            snackbarSeverity: 'success'
+        });
+
+        await UserService.ready().then((success: boolean) => {
+            if (success) {
+                alert('works')
+                this.props.history.push(`/logout`);
+            } else {
+                toast.error(TOAST_MESSAGES.WELCOME_ERROR, {
+                    className: 'welcome-error-message',
+                    position: toast.POSITION.TOP_CENTER,
+                    autoClose: false,
+                    draggable: false
+                });
+            }
+        });
+    };
 
     public render() {
-
-
-
         return (
             <div className="Welcome--wrapper">
                 <Grid container direction="column">
                     <Grid item style={{width: '100%', position: 'sticky', top: 0, zIndex: 3}}>
                         <h1>Welcome</h1>
+                        <TabPageHeader {...this.props} />
                     </Grid>
                     <Grid item style={{width: '100%'}}>
-                       <StartHere />
+                        <AppTabHandler {...this.props}/>
                     </Grid>
-                    <Grid item style={{width: '100%'}}>
                     <Hidden smUp>
                         <PageToolbar {...this.props} />
                     </Hidden>
-                    </Grid>
                 </Grid>
 
             </div>
@@ -70,10 +114,13 @@ class Welcome extends React.Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
+    const {users, offline} = state
     return {
-        offline: state.offline
+        user: state.user,
+        offline: state.offline,
     }
+
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -84,4 +131,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Welcome));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StartHere));

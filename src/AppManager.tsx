@@ -5,13 +5,11 @@ import {getAuthenticatedUser} from "./redux/actions/user";
 import SnackbarContainer from "./global-elements/SnackbarContainer";
 
 interface ReduxProps {
-    fetchUserFn: () => void;
+    fetchUserFn: () => void,
 }
 
 class AppManager extends React.Component<ReduxProps> {
     public async componentDidMount() {
-        let {fetchUserFn} = this.props;
-        await fetchUserFn();
 
     }
 

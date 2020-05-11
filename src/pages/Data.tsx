@@ -7,7 +7,7 @@ import {TOAST_MESSAGES} from "../global";
 import {connect} from "react-redux";
 import {User} from "../models/User";
 import {Hidden} from "@material-ui/core";
-import './Welcome.scss'
+import '../global-elements/globalStyles.scss'
 
 interface ReduxProps {
     user: User;
